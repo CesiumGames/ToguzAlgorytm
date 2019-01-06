@@ -1,0 +1,213 @@
+#include <iostream>
+#include <time.h>
+#include <cstdlib>
+#include <windows.h>
+#include <conio.h>
+#include <stdio.h>
+
+using namespace std;
+
+int P[18];
+int punkty_za_atak =0;
+int najlepszy_atak = 1;
+int punkty_do_staracenia = 0;
+int najlepsza_obrona = 1;
+int najwieksza_liczba = 0;
+
+int main()
+{
+   for(;;)
+   {
+        punkty_za_atak = 0;
+        najlepszy_atak = 0;
+        punkty_do_staracenia = 0;
+        najlepsza_obrona = 0;
+        system("cls");
+        cout << "podaj wartosci pol:" << endl;
+        for(int i=1; i<19; i++)
+        {
+            cout << "Pole " << i << ": ";
+            cin >> P[i];
+        }
+         for(int i=1; i<10; i++)
+        {
+            if(P[P[i]+i-1] % 2 == 1 && P[i]+i-1 >= 10 )
+            {
+                if(punkty_za_atak < P[P[i]+i-1])
+                {
+                    najlepszy_atak = i;
+                    punkty_za_atak = P[P[i]+i-1];
+                }
+
+            }
+            else if(P[9] == 2 && P[10] % 2 == 1)
+            {
+                if(punkty_za_atak <= P[10])
+                {
+                    najlepszy_atak = 9;
+                    punkty_za_atak = P[10];
+                }
+
+            }
+            else if(P[9] == 1 && P[10] % 2 == 1)
+            {
+                if(punkty_za_atak <= P[10])
+                {
+                    najlepszy_atak = 9;
+                    punkty_za_atak = P[10];
+                }
+
+            }
+        }
+        for(int i=1; i<10; i++)
+        {
+            if(P[10] == i+9 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[11] == i+8 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[12] == i+7 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[13] == i+6 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[14] == i+5 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[15] == i+4 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[16] == i+3 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[17] == i+2 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[18] == i+1 && P[i]%2==1)
+            {
+                if(punkty_do_staracenia<P[i])
+                {
+                    punkty_do_staracenia = P[i];
+                    najlepsza_obrona = i;
+                }
+            }
+            else if(P[1]%2==1 && P[18] == 1)
+            {
+               if(punkty_do_staracenia<P[1])
+                {
+                    punkty_do_staracenia = P[1];
+                    najlepsza_obrona = 1;
+                }
+            }
+        }
+
+        if(punkty_do_staracenia>punkty_za_atak && najlepsza_obrona>0)
+        {
+            cout<<"Graj Polem: "<< najlepsza_obrona<< endl;
+        }
+        else if(punkty_za_atak>=punkty_do_staracenia && najlepszy_atak>0)
+        {
+            cout<<"Graj Polem: "<< najlepszy_atak<< endl;
+        }
+        else
+        {
+
+            for(int i=1;i<10;i++)
+            {
+                if(P[i]>=najwieksza_liczba && P[i]>0)
+                {
+                najwieksza_liczba = i;
+                }
+            }
+            if(najwieksza_liczba<5 && najwieksza_liczba>0)
+            {
+                if(P[1]>0)
+                {
+                    cout<<"Graj Polem: "<<1<< endl;
+                }
+                else if(P[2]>0)
+                {
+                    cout<<"Graj Polem: "<<2<< endl;
+                }
+                else if(P[3]>0)
+                {
+                    cout<<"Graj Polem: "<<3<< endl;
+                }
+                else if(P[4]>0)
+                {
+                    cout<<"Graj Polem: "<<4<< endl;
+                }
+                else if(P[5]>0)
+                {
+                    cout<<"Graj Polem: "<<5<< endl;
+                }
+                else if(P[6]>0)
+                {
+                    cout<<"Graj Polem: "<<6<< endl;
+                }
+                else if(P[7]>0)
+                {
+                    cout<<"Graj Polem: "<<7<< endl;
+                }
+                else if(P[8]>0)
+                {
+                    cout<<"Graj Polem: "<<8<< endl;
+                }
+                else if(P[9]>0)
+                {
+                    cout<<"Graj Polem: "<<9<< endl;
+                }
+            }
+            else
+            {
+                cout<<"Graj Polem: "<<najwieksza_liczba<< endl;
+            }
+
+
+        }
+        getch();
+   }
+    return 0;
+}
