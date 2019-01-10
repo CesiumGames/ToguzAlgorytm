@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <conio.h>
 
+
 using namespace std;
 
 int P[18];
@@ -10,6 +11,9 @@ int najlepszy_atak = 1;
 int punkty_do_staracenia = 0;
 int najlepsza_obrona = 1;
 int najwieksza_liczba = 0;
+int posiadany_tuz = 0;
+int gdziepostawictuza = 0;
+int moznapostawictuza = 0;
 
 int main()
 {
@@ -19,6 +23,8 @@ int main()
         najlepszy_atak = 0;
         punkty_do_staracenia = 0;
         najlepsza_obrona = 0;
+        gdziepostawictuza = 0;
+        moznapostawictuza = 0;
         system("cls");
         cout << "podaj wartosci pol:" << endl;
         for(int i=1; i<19; i++)
@@ -37,6 +43,11 @@ int main()
                 }
 
             }
+            else if(P[P[i]+i-1]==2 && posiadany_tuz==0)
+            {
+                moznapostawictuza = 1;
+                gdziepostawictuza = i;
+            }
             else if(P[9] == 2 && P[10] % 2 == 1)
             {
                 if(punkty_za_atak <= P[10])
@@ -53,7 +64,6 @@ int main()
                     najlepszy_atak = 9;
                     punkty_za_atak = P[10];
                 }
-
             }
         }
         for(int i=1; i<10; i++)
@@ -140,17 +150,30 @@ int main()
             }
         }
 
-        if(punkty_do_staracenia>punkty_za_atak && najlepsza_obrona>0)
+        if(punkty_za_atak>=punkty_do_staracenia && najlepszy_atak>0)
         {
-            cout<<"Graj Polem: "<< najlepsza_obrona<< endl;
+           if(punkty_za_atak<5||moznapostawictuza==1)
+           {
+               cout<<"Graj Polem: "<<gdziepostawictuza;
+           }
+           else
+           {
+               cout<<"Graj Polem: "<<najlepszy_atak;
+           }
         }
-        else if(punkty_za_atak>=punkty_do_staracenia && najlepszy_atak>0)
+        else if(punkty_do_staracenia>punkty_za_atak && najlepsza_obrona>0)
         {
-            cout<<"Graj Polem: "<< najlepszy_atak<< endl;
+             if(punkty_do_staracenia<5||moznapostawictuza==1)
+           {
+               cout<<"Graj Polem: "<<gdziepostawictuza;
+           }
+           else
+           {
+               cout<<"Graj Polem: "<<najlepsza_obrona;
+           }
         }
-        else
+        else if(punkty_do_staracenia==punkty_za_atak && punkty_do_staracenia==0)
         {
-
             for(int i=1;i<10;i++)
             {
                 if(P[i]>=najwieksza_liczba && P[i]>0)
@@ -158,9 +181,30 @@ int main()
                 najwieksza_liczba = i;
                 }
             }
-            if(najwieksza_liczba<5 && najwieksza_liczba>0)
+            if(moznapostawictuza==1)
+            {
+                cout<<"Graj Polem: "<<gdziepostawictuza;
+                posiadany_tuz = 1;
+            }
+            else if(najwieksza_liczba<7 && najwieksza_liczba>0)
             {
                 if(P[1]>0)
+                {
+                    cout<<"Graj Polem: "<<1<< endl;
+                }
+                else if(P[2]>0)
+                {
+                    cout<<"Graj Polem: "<<2<< endl;
+                }
+                else if(P[3]>0)
+                {
+                    cout<<"Graj Polem: "<<3<< endl;
+                }
+                else if(P[4]>0)
+                {
+                    cout<<"Graj Polem: "<<4<< endl;
+                }
+                else if(P[5]>0)if(P[1]>0)
                 {
                     cout<<"Graj Polem: "<<1<< endl;
                 }
@@ -197,13 +241,13 @@ int main()
                     cout<<"Graj Polem: "<<9<< endl;
                 }
             }
-            else
+            else if(najwieksza_liczba>=7)
             {
-                cout<<"Graj Polem: "<<najwieksza_liczba<< endl;
+                cout<<"Graj Polem: "<<najwieksza_liczba;
             }
-
-
         }
+        cout<<"mozna: "<<moznapostawictuza<<"gdzie: "<< gdziepostawictuza;
+
         getch();
    }
     return 0;
