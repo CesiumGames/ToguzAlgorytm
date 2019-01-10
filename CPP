@@ -246,8 +246,6 @@ int main()
                 cout<<"Graj Polem: "<<najwieksza_liczba;
             }
         }
-        cout<<"mozna: "<<moznapostawictuza<<"gdzie: "<< gdziepostawictuza;
-
         getch();
    }
     return 0;
