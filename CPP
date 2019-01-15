@@ -6,7 +6,7 @@
 using namespace std;
 
 int P[18];
-int punkty_za_atak =0;
+int punkty_za_atak = 0;
 int najlepszy_atak = 1;
 int punkty_do_staracenia = 0;
 int najlepsza_obrona = 1;
@@ -152,7 +152,7 @@ int main()
 
         if(punkty_za_atak>=punkty_do_staracenia && najlepszy_atak>0)
         {
-           if(punkty_za_atak<5||moznapostawictuza==1)
+           if(punkty_za_atak<10&&moznapostawictuza==1)
            {
                cout<<"Graj Polem: "<<gdziepostawictuza;
            }
@@ -163,7 +163,7 @@ int main()
         }
         else if(punkty_do_staracenia>punkty_za_atak && najlepsza_obrona>0)
         {
-             if(punkty_do_staracenia<5||moznapostawictuza==1)
+             if(punkty_do_staracenia<10&&moznapostawictuza==1)
            {
                cout<<"Graj Polem: "<<gdziepostawictuza;
            }
@@ -246,6 +246,7 @@ int main()
                 cout<<"Graj Polem: "<<najwieksza_liczba;
             }
         }
+
         getch();
    }
     return 0;
