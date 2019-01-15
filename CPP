@@ -169,7 +169,50 @@ int main()
            }
            else
            {
-               cout<<"Graj Polem: "<<najlepsza_obrona;
+               if(P[najlepsza_obrona-1]==1||P[najlepsza_obrona-1]==2)
+               {
+                   cout<<"Graj Polem: "<<najlepsza_obrona-1;
+               }
+               else if(najlepsza_obrona=1)
+               {
+                   cout<<"Graj Polem: "<<najlepsza_obrona;
+               }
+               else if(P[1]>=najlepsza_obrona)
+               {
+                   cout<<"Graj Polem: 1";
+               }
+               else if(P[2]>=najlepsza_obrona-1)
+               {
+                   cout<<"Graj Polem: 2";
+               }
+               else if(P[3]>=najlepsza_obrona-2)
+               {
+                   cout<<"Graj Polem: 3";
+               }
+               else if(P[4]>=najlepsza_obrona-3)
+               {
+                   cout<<"Graj Polem: 4";
+               }
+               else if(P[5]>=najlepsza_obrona-4)
+               {
+                   cout<<"Graj Polem: 5";
+               }
+               else if(P[6]>=najlepsza_obrona-5)
+               {
+                   cout<<"Graj Polem: 6";
+               }
+               else if(P[7]>=najlepsza_obrona-6)
+               {
+                   cout<<"Graj Polem: 7";
+               }
+               else if(P[8]>=najlepsza_obrona-7)
+               {
+                   cout<<"Graj Polem: 8";
+               }
+               else
+               {
+                   cout<<"Graj Polem: "<<najlepsza_obrona;
+               }
            }
         }
         else if(punkty_do_staracenia==punkty_za_atak && punkty_do_staracenia==0)
