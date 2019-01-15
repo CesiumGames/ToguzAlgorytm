@@ -41,6 +41,10 @@ int main()
                     najlepszy_atak = i;
                     punkty_za_atak = P[P[i]+i-1];
                 }
+                else
+                {
+                    najlepszy_atak = 2;
+                }
 
             }
             else if(P[P[i]+i-1]==2 && posiadany_tuz==0)
