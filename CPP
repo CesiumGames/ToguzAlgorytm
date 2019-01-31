@@ -1,300 +1,387 @@
 #include <iostream>
+#include <iostream>
 #include <windows.h>
 #include <conio.h>
-
 
 using namespace std;
 
 int P[18];
-int punkty_za_atak = 0;
-int najlepszy_atak = 1;
-int punkty_do_staracenia = 0;
-int najlepsza_obrona = 1;
-int najwieksza_liczba = 0;
-int posiadany_tuz = 0;
-int gdziepostawictuza = 0;
-int moznapostawictuza = 0;
+int NA;
+int NO;
+int ZP;
+int SP;
+int JT=0;                                                           //setup
+int MT;
+int GT;
+int NL;
+int NP;
+int NPO;
+
+void NajPO()
+{
+    if(P[1]>=NO && P[1] % 2 == 0 && P[1]<6)
+    {
+      NPO=1;
+    }
+    else if(P[2]+1>=NO && P[2] % 2 == 0 && P[1]<6)
+    {
+       NPO=2;
+    }
+    else if(P[3]+2>=NO && P[2] % 2 == 0 && P[1]<6)
+    {
+       NPO=3;
+    }
+    else if(P[4]+3>=NO && P[2] % 2 == 0 && P[1]<6)
+    {
+       NPO=4;
+    }
+    else if(P[5]+4>=NO && P[2] % 2 == 0 && P[1]<6)
+    {
+       NPO=5;
+    }
+    else if(P[1]>=NO && P[1] % 2 == 0)
+    {
+      NPO=1;
+    }
+    else if(P[2]+1>=NO && P[2] % 2 == 0)
+    {
+       NPO=2;
+    }
+    else if(P[3]+2>=NO && P[2] % 2 == 0)
+    {
+       NPO=3;
+    }
+    else if(P[4]+3>=NO && P[2] % 2 == 0)
+    {
+       NPO=4;
+    }
+    else if(P[5]+4>=NO && P[2] % 2 == 0)
+    {
+       NPO=5;
+    }
+    else if(P[1]>=NO)
+    {
+      NPO=1;
+    }
+    else if(P[2]+1>=NO)
+    {
+       NPO=2;
+    }
+    else if(P[3]+2>=NO)
+    {
+       NPO=3;
+    }
+    else if(P[4]+3>=NO)
+    {
+       NPO=4;
+    }
+    else if(P[5]+4>=NO)
+    {
+       NPO=5;
+    }
+    else if(P[6]+5>=NO)
+    {
+       NPO=6;
+    }
+    else if(P[7]+6>=NO)
+    {
+       NPO=7;
+    }
+    else
+    {
+        NPO=NO;
+    }
+}
+
+void NajL()
+{
+    if(P[9]>NL)
+    {
+        NP=9;
+        NL=P[9];
+    }
+    if(P[8]>NL)
+    {
+        NP=8;
+        NL=P[8];
+    }
+    if(P[7]>NL)
+    {
+        NP=7;
+        NL=P[7];
+    }
+    if(P[6]>NL)
+    {
+        NP=6;
+        NL=P[6];
+    }
+    if(P[5]>NL)
+    {
+        NP=5;
+        NL=P[5];
+    }
+    if(P[4]>NL)
+    {
+        NP=4;
+        NL=P[4];
+    }
+    if(P[3]>NL)
+    {
+        NP=3;
+        NL=P[3];
+    }
+    if(P[2]>NL)
+    {
+        NP=2;
+        NL=P[2];
+    }
+    if(P[1]>NL)
+    {
+        NP=1;
+        NL=P[1];
+    }
+    if(NL==0 && P[1]>0)
+    {
+        NL =P[1];
+    }
+    else if(NL==0 && P[1]>0)
+    {
+        NL =P[1];
+    }
+     else if(NL==0 && P[2]>0)
+    {
+        NL =P[2];
+    }
+     else if(NL==0 && P[3]>0)
+    {
+        NL =P[3];
+    }
+     else if(NL==0 && P[4]>0)
+    {
+        NL =P[4];
+    }
+}
 
 int main()
 {
-   for(;;)
-   {
-        punkty_za_atak = 0;
-        najlepszy_atak = 0;
-        punkty_do_staracenia = 0;
-        najlepsza_obrona = 0;
-        gdziepostawictuza = 0;
-        moznapostawictuza = 0;
+    for(;;)
+    {
+        NA=0;
+        NO=0;
+        ZP=0;                                                    //RESET
+        SP=0;
+        MT=0;
+        GT=0;
+        NL=0;
+        NP=0;
         system("cls");
         cout << "podaj wartosci pol:" << endl;
+
         for(int i=1; i<19; i++)
         {
-            cout << "Pole " << i << ": ";
-            cin >> P[i];
+        cout << "Pole " << i << ": ";
+        cin >> P[i];
         }
-         for(int i=1; i<10; i++)
+
+        for(int i=1; i<10; i++)
         {
-            if(P[P[i]+i-1] % 2 == 1 && P[i]+i-1 >= 10 )
+            if(P[P[i]+i-1] % 2 == 1 && P[i]+i-1 >= 10 )            //szukanie punktów do zdobycia/tuza
             {
-                if(punkty_za_atak < P[P[i]+i-1])
+                if(ZP < P[P[i]+i-1])
                 {
-                    najlepszy_atak = i;
-                    punkty_za_atak = P[P[i]+i-1];
+                    NA = i;
+                    ZP = P[P[i]+i-1];
                 }
-                else
-                {
-                    najlepszy_atak = 2;
-                }
-
             }
-            else if(P[P[i]+i-1]==2 && posiadany_tuz==0)
+            if(P[P[i]+i-1]==2 && JT==0 && P[i]+i-1>9)
             {
-                moznapostawictuza = 1;
-                gdziepostawictuza = i;
-            }
-            else if(P[9] == 2 && P[10] % 2 == 1)
-            {
-                if(punkty_za_atak <= P[10])
-                {
-                    najlepszy_atak = 9;
-                    punkty_za_atak = P[10];
-                }
-
-            }
-            else if(P[9] == 1 && P[10] % 2 == 1)
-            {
-                if(punkty_za_atak <= P[10])
-                {
-                    najlepszy_atak = 9;
-                    punkty_za_atak = P[10];
-                }
+                MT = 1;
+                GT = i;
             }
         }
+        if(P[9] == 1 && P[10] % 2 == 1)
+        {
+            if(ZP <= P[10])
+            {
+                NA = 9;
+                ZP = P[10];
+            }
+        }
+
+        for(int i=1;i<10;i++)
+        {
+            if(NL<P[i])
+            {
+                NL = i;
+            }
+        }
+
         for(int i=1; i<10; i++)
         {
             if(P[10] == i+9 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                SP = P[i];
+                NO = i;
                 }
             }
-            else if(P[11] == i+8 && P[i]%2==1)
+            if(P[11] == i+8 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                    SP = P[i];
+                    NO = i;
                 }
             }
-            else if(P[12] == i+7 && P[i]%2==1)
+            if(P[12] == i+7 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                SP = P[i];
+                NO = i;
                 }
             }
-            else if(P[13] == i+6 && P[i]%2==1)
+            if(P[13] == i+6 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                    SP = P[i];
+                    NO = i;
                 }
             }
-            else if(P[14] == i+5 && P[i]%2==1)
+            if(P[14] == i+5 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                    SP = P[i];
+                    NO = i;
                 }
             }
-            else if(P[15] == i+4 && P[i]%2==1)
+            if(P[15] == i+4 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                    SP = P[i];
+                    NO = i;
                 }
             }
-            else if(P[16] == i+3 && P[i]%2==1)
+            if(P[16] == i+3 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                    SP = P[i];
+                    NO = i;
                 }
             }
-            else if(P[17] == i+2 && P[i]%2==1)
+            if(P[17] == i+2 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                    SP = P[i];
+                    NO = i;
                 }
             }
-            else if(P[18] == i+1 && P[i]%2==1)
+            if(P[18] == i+1 && P[i]%2==1)
             {
-                if(punkty_do_staracenia<P[i])
+                if(SP<P[i])
                 {
-                    punkty_do_staracenia = P[i];
-                    najlepsza_obrona = i;
+                    SP = P[i];
+                    NO = i;
                 }
             }
-            else if(P[1]%2==1 && P[18] == 1)
+            if(P[1]%2==1 && P[18] == 1)
             {
-               if(punkty_do_staracenia<P[1])
+                if(SP<P[1])
                 {
-                    punkty_do_staracenia = P[1];
-                    najlepsza_obrona = 1;
+                    SP = P[1];
+                    NO = 1;
                 }
             }
+        }
+        NajL();
+        NajPO();
+
+        cout<<"atak: "<<NA<<"     "<<ZP<<endl;
+        cout<<"obrona: "<<NPO<<"     "<<SP<<endl;              //DEBUG
+        cout<<"tuz: "<<JT<<"     "<<GT<<"   "<<MT<<endl;
+        cout<<"Naj liczba: "<<NL << "   "<< NP<<endl;
+
+        if(ZP>=SP && ZP>0)
+        {
+            if(MT==1 && ZP<15 && JT==0)
+            {
+                cout<<"Graj Polem: "<<GT<<endl;
+                JT = 1;
+            }
+            else
+            {
+                cout<<"Graj Polem: "<<NA<<endl;
+            }
+        }
+        else if(SP>ZP && SP>0)
+        {
+            if(MT==1 && SP<15 && JT==0)
+            {
+                cout<<"Graj Polem: "<<GT<<endl;
+                JT = 1;
+            }
+            else
+            {
+                cout<<"Graj Polem: "<<NPO<<endl;
+            }
+        }
+        else if(MT==1 && JT==0)
+        {
+            cout<<"Graj Polem: "<<GT<<endl;
+            JT = 1;
+        }
+        else if(NL >= 9)
+        {
+            cout<<"Graj Polem: "<<NP<<endl;
+        }
+        else
+        {
+            if(P[1]>0)
+            {
+                cout<<"Graj Polem: 1"<<endl;
+            }
+            else if(P[2]>0)
+            {
+                cout<<"Graj Polem: 2"<<endl;
+            }
+            else if(P[3]>0)
+            {
+                cout<<"Graj Polem: 3"<<endl;
+            }
+            else if(P[4]>0)
+            {
+                cout<<"Graj Polem: 4"<<endl;
+            }
+            else if(P[5]>0)
+            {
+                cout<<"Graj Polem: 5"<<endl;
+            }
+            else if(P[6]>0)
+            {
+                cout<<"Graj Polem: 6"<<endl;
+            }
+            else if(P[7]>0)
+            {
+                cout<<"Graj Polem: 7"<<endl;
+            }
+            else if(P[8]>0)
+            {
+                cout<<"Graj Polem: 8"<<endl;
+            }
+            else if(P[9]>0)
+            {
+                cout<<"Graj Polem: 9"<<endl;
+            }
+
         }
 
-        if(punkty_za_atak>=punkty_do_staracenia && najlepszy_atak>0)
-        {
-           if(punkty_za_atak<10&&moznapostawictuza==1)
-           {
-               cout<<"Graj Polem: "<<gdziepostawictuza;
-           }
-           else
-           {
-               cout<<"Graj Polem: "<<najlepszy_atak;
-           }
-        }
-        else if(punkty_do_staracenia>punkty_za_atak && najlepsza_obrona>0)
-        {
-             if(punkty_do_staracenia<10&&moznapostawictuza==1)
-           {
-               cout<<"Graj Polem: "<<gdziepostawictuza;
-           }
-           else
-           {
-               if(P[najlepsza_obrona-1]==1||P[najlepsza_obrona-1]==2)
-               {
-                   cout<<"Graj Polem: "<<najlepsza_obrona-1;
-               }
-               else if(najlepsza_obrona=1)
-               {
-                   cout<<"Graj Polem: "<<najlepsza_obrona;
-               }
-               else if(P[1]>=najlepsza_obrona)
-               {
-                   cout<<"Graj Polem: 1";
-               }
-               else if(P[2]>=najlepsza_obrona-1)
-               {
-                   cout<<"Graj Polem: 2";
-               }
-               else if(P[3]>=najlepsza_obrona-2)
-               {
-                   cout<<"Graj Polem: 3";
-               }
-               else if(P[4]>=najlepsza_obrona-3)
-               {
-                   cout<<"Graj Polem: 4";
-               }
-               else if(P[5]>=najlepsza_obrona-4)
-               {
-                   cout<<"Graj Polem: 5";
-               }
-               else if(P[6]>=najlepsza_obrona-5)
-               {
-                   cout<<"Graj Polem: 6";
-               }
-               else if(P[7]>=najlepsza_obrona-6)
-               {
-                   cout<<"Graj Polem: 7";
-               }
-               else if(P[8]>=najlepsza_obrona-7)
-               {
-                   cout<<"Graj Polem: 8";
-               }
-               else
-               {
-                   cout<<"Graj Polem: "<<najlepsza_obrona;
-               }
-           }
-        }
-        else if(punkty_do_staracenia==punkty_za_atak && punkty_do_staracenia==0)
-        {
-            for(int i=1;i<10;i++)
-            {
-                if(P[i]>=najwieksza_liczba && P[i]>0)
-                {
-                najwieksza_liczba = i;
-                }
-            }
-            if(moznapostawictuza==1)
-            {
-                cout<<"Graj Polem: "<<gdziepostawictuza;
-                posiadany_tuz = 1;
-            }
-            else if(najwieksza_liczba<7 && najwieksza_liczba>0)
-            {
-                if(P[1]>0)
-                {
-                    cout<<"Graj Polem: "<<1<< endl;
-                }
-                else if(P[2]>0)
-                {
-                    cout<<"Graj Polem: "<<2<< endl;
-                }
-                else if(P[3]>0)
-                {
-                    cout<<"Graj Polem: "<<3<< endl;
-                }
-                else if(P[4]>0)
-                {
-                    cout<<"Graj Polem: "<<4<< endl;
-                }
-                else if(P[5]>0)if(P[1]>0)
-                {
-                    cout<<"Graj Polem: "<<1<< endl;
-                }
-                else if(P[2]>0)
-                {
-                    cout<<"Graj Polem: "<<2<< endl;
-                }
-                else if(P[3]>0)
-                {
-                    cout<<"Graj Polem: "<<3<< endl;
-                }
-                else if(P[4]>0)
-                {
-                    cout<<"Graj Polem: "<<4<< endl;
-                }
-                else if(P[5]>0)
-                {
-                    cout<<"Graj Polem: "<<5<< endl;
-                }
-                else if(P[6]>0)
-                {
-                    cout<<"Graj Polem: "<<6<< endl;
-                }
-                else if(P[7]>0)
-                {
-                    cout<<"Graj Polem: "<<7<< endl;
-                }
-                else if(P[8]>0)
-                {
-                    cout<<"Graj Polem: "<<8<< endl;
-                }
-                else if(P[9]>0)
-                {
-                    cout<<"Graj Polem: "<<9<< endl;
-                }
-            }
-            else if(najwieksza_liczba>=7)
-            {
-                cout<<"Graj Polem: "<<najwieksza_liczba;
-            }
-        }
 
         getch();
-   }
-    return 0;
+    }
 }
